@@ -5,10 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>KAYON</title>
 
-<!-- 手寫字體（第一頁用） -->
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&display=swap" rel="stylesheet">
-
-<!-- 功能字體（串流頁用） -->
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
@@ -114,7 +111,7 @@ body {
   filter: brightness(1.2);
 }
 
-/* ===== 🎧 串流頁 ===== */
+/* ===== 串流頁 ===== */
 
 .page2 {
   position: fixed;
@@ -143,29 +140,33 @@ body {
 }
 
 .cover {
-  width: 180px;
+  width: 160px;
   margin-bottom: 40px;
 }
 
-/* LOGO按鈕 */
+/* ICON區 */
 .buttons {
   display: flex;
-  gap: 24px;
   justify-content: center;
+  align-items: center;
+  gap: 20px;
 }
 
 .buttons img {
-  width: 42px;
-  opacity: 0.85;
-  transition: 0.3s;
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+
+  opacity: 0.9;
+  transition: all 0.25s ease;
 }
 
 .buttons img:hover {
+  transform: scale(1.12);
   opacity: 1;
-  transform: scale(1.1);
 }
 
-/* 📱 手機 */
+/* 手機 */
 @media (max-width:600px){
 
   .earth {
@@ -196,7 +197,8 @@ body {
   }
 
   .buttons img {
-    width: 36px;
+    width: 34px;
+    height: 34px;
   }
 }
 </style>
@@ -224,34 +226,40 @@ body {
   <img src="signature.png" class="sign" id="sign">
 </div>
 
-<!-- 🎧 串流頁 -->
+<!-- 串流頁 -->
 <div class="page2" id="page2">
 
   <img src="album.png" class="cover">
 
   <div class="buttons">
-    <a href="https://music.apple.com" target="_blank">
-      <img src="apple.png">
+
+    <a href="你的Apple連結" target="_blank">
+      <img src="apple music.png">
     </a>
 
-    <a href="https://open.spotify.com" target="_blank">
+    <a href="你的Spotify連結" target="_blank">
       <img src="spotify.png">
     </a>
 
-    <a href="https://www.youtube.com" target="_blank">
-      <img src="youtube.png">
+    <a href="你的YouTube連結" target="_blank">
+      <img src="youtube music.png">
     </a>
 
-    <a href="https://www.kkbox.com" target="_blank">
+    <a href="你的KKBOX連結" target="_blank">
       <img src="kkbox.png">
     </a>
+
+    <a href="https://line.me" target="_blank">
+      <img src="line.png">
+    </a>
+
   </div>
 
 </div>
 
 <script>
 
-// 第一頁流程
+// 第一頁（不動）
 setTimeout(() => {
   document.getElementById('title').style.opacity = '0';
   setTimeout(()=>{
@@ -271,7 +279,7 @@ setTimeout(() => {
   document.getElementById('sign').style.opacity = '1';
 }, 20000);
 
-// 🎧 串流頁
+// 串流頁
 setTimeout(() => {
   document.getElementById('page2').classList.add('show');
 }, 24000);
