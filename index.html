@@ -10,27 +10,44 @@
 body {
   margin: 0;
   overflow: hidden;
+  background: black;
   color: #EDEDED;
   font-family: 'Caveat', cursive;
 }
 
-/* 星空背景 */
-.bg {
+/* 星星 */
+.stars {
   position: fixed;
   width: 100%;
   height: 100%;
-  background: url('https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3') center/cover no-repeat;
-  z-index: -2;
+  background: transparent;
+  box-shadow:
+    20px 30px #fff,
+    100px 200px #fff,
+    300px 400px #aaa,
+    500px 100px #ddd,
+    700px 300px #fff,
+    900px 500px #aaa,
+    1200px 200px #ddd,
+    1500px 400px #fff,
+    1700px 100px #bbb,
+    2000px 300px #fff;
+  animation: twinkle 3s infinite alternate;
 }
 
-/* 地球（可選） */
+@keyframes twinkle {
+  from { opacity: 0.3; }
+  to { opacity: 1; }
+}
+
+/* 地球 */
 .earth {
   position: absolute;
-  bottom: -50px;
-  right: -50px;
-  width: 300px;
-  opacity: 0.2;
-  animation: fadeIn 3s ease forwards;
+  bottom: -120px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 500px;
+  opacity: 0.5;
 }
 
 /* 標題 */
@@ -42,7 +59,6 @@ body {
   font-size: 36px;
   opacity: 0;
   animation: fadeIn 3s ease forwards;
-  animation-delay: 1s;
 }
 
 /* 封面 */
@@ -54,7 +70,7 @@ body {
   width: 260px;
   opacity: 0;
   animation: fadeIn 2s ease forwards;
-  animation-delay: 5s;
+  animation-delay: 4s;
 }
 
 /* 手寫 */
@@ -96,6 +112,7 @@ body {
 
 @media (max-width:600px){
   .album{width:200px;}
+  .earth{width:350px;}
   .line{font-size:22px;}
 }
 </style>
@@ -103,18 +120,14 @@ body {
 
 <body>
 
-<div class="bg"></div>
+<div class="stars"></div>
 
-<!-- 地球（可刪） -->
 <img class="earth" src="https://pngimg.com/uploads/earth/earth_PNG39.png">
 
-<!-- 標題 -->
 <div class="title" id="title">不完美的快樂</div>
 
-<!-- 封面 -->
-<img src="images/album.png" class="album" id="album">
+<img src="album.png" class="album" id="album">
 
-<!-- 手寫 -->
 <div class="text" id="text">
   <div class="line">Hi, 我是 KAYON</div>
   <div class="line">如果你看到這裡</div>
