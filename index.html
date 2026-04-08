@@ -1,114 +1,142 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-  <meta charset="UTF-8">
-  <title>KAYON</title>
+<meta charset="UTF-8">
+<title>KAYON</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&display=swap" rel="stylesheet">
 
-  <style>
-    body {
-      margin: 0;
-      background: #000;
-      color: #EDEDED;
-      font-family: 'Caveat', cursive;
-      overflow: hidden;
-    }
+<style>
+body {
+  margin: 0;
+  overflow: hidden;
+  color: #EDEDED;
+  font-family: 'Caveat', cursive;
+}
 
-    .center {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-    }
+/* 星空背景 */
+.bg {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: url('https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3') center/cover no-repeat;
+  z-index: -2;
+}
 
-    .title {
-      font-size: 32px;
-      opacity: 0;
-      animation: fadeIn 2s ease forwards;
-    }
+/* 地球（可選） */
+.earth {
+  position: absolute;
+  bottom: -50px;
+  right: -50px;
+  width: 300px;
+  opacity: 0.2;
+  animation: fadeIn 3s ease forwards;
+}
 
-    .album {
-      width: 260px;
-      opacity: 0;
-      margin-top: 20px;
-      animation: fadeIn 2s ease forwards;
-      animation-delay: 2s;
-    }
+/* 標題 */
+.title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 36px;
+  opacity: 0;
+  animation: fadeIn 3s ease forwards;
+  animation-delay: 1s;
+}
 
-    .text {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      max-width: 600px;
-      text-align: center;
-      display: none;
-    }
+/* 封面 */
+.album {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 260px;
+  opacity: 0;
+  animation: fadeIn 2s ease forwards;
+  animation-delay: 5s;
+}
 
-    .line {
-      opacity: 0;
-      transform: translateY(10px);
-      animation: fadeUp 0.8s ease forwards;
-      margin: 10px 0;
-      font-size: 28px;
-      line-height: 1.6;
-    }
+/* 手寫 */
+.text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 600px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 1.5s ease;
+}
 
-    .line:nth-child(1) { animation-delay: 5s; }
-    .line:nth-child(2) { animation-delay: 6s; }
-    .line:nth-child(3) { animation-delay: 7s; }
-    .line:nth-child(4) { animation-delay: 8s; }
-    .line:nth-child(5) { animation-delay: 9s; }
-    .line:nth-child(6) { animation-delay: 10s; }
-    .line:nth-child(7) { animation-delay: 11s; }
-    .line:nth-child(8) { animation-delay: 12s; }
+.line {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeUp 0.8s ease forwards;
+  margin: 10px 0;
+  font-size: 28px;
+}
 
-    @keyframes fadeIn {
-      to { opacity: 1; }
-    }
+.line:nth-child(1){animation-delay:1s;}
+.line:nth-child(2){animation-delay:2s;}
+.line:nth-child(3){animation-delay:3s;}
+.line:nth-child(4){animation-delay:4s;}
+.line:nth-child(5){animation-delay:5s;}
+.line:nth-child(6){animation-delay:6s;}
+.line:nth-child(7){animation-delay:7s;}
+.line:nth-child(8){animation-delay:8s;}
 
-    @keyframes fadeUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
 
-    @media (max-width: 600px) {
-      .line { font-size: 22px; }
-      .album { width: 200px; }
-    }
-  </style>
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width:600px){
+  .album{width:200px;}
+  .line{font-size:22px;}
+}
+</style>
 </head>
 
 <body>
 
-  <!-- 第一屏 -->
-  <div class="center">
-    <div class="title">不完美的快樂</div>
-    <img src="images/album.png" class="album">
-  </div>
+<div class="bg"></div>
 
-  <!-- 手寫文字 -->
-  <div class="text" id="text">
-    <div class="line">Hi, 我是 KAYON</div>
-    <div class="line">如果你看到這裡</div>
-    <div class="line">這張限量 NFC 專輯應該在你手上</div>
-    <div class="line">謝謝你把它留下</div>
-    <div class="line">當這個世界對你不太溫柔的時候</div>
-    <div class="line">希望這張專輯</div>
-    <div class="line">可以剛好陪著你</div>
-    <div class="line">KAYON</div>
-  </div>
+<!-- 地球（可刪） -->
+<img class="earth" src="https://pngimg.com/uploads/earth/earth_PNG39.png">
 
-  <script>
-    setTimeout(() => {
-      document.querySelector('.center').style.display = 'none';
-      document.getElementById('text').style.display = 'block';
-    }, 4000);
-  </script>
+<!-- 標題 -->
+<div class="title" id="title">不完美的快樂</div>
+
+<!-- 封面 -->
+<img src="images/album.png" class="album" id="album">
+
+<!-- 手寫 -->
+<div class="text" id="text">
+  <div class="line">Hi, 我是 KAYON</div>
+  <div class="line">如果你看到這裡</div>
+  <div class="line">這張限量 NFC 專輯應該在你手上</div>
+  <div class="line">謝謝你把它留下</div>
+  <div class="line">當這個世界對你不太溫柔的時候</div>
+  <div class="line">希望這張專輯</div>
+  <div class="line">可以剛好陪著你</div>
+  <div class="line">KAYON</div>
+</div>
+
+<script>
+setTimeout(() => {
+  document.getElementById('title').style.opacity = '0';
+  document.getElementById('album').style.opacity = '0';
+
+  setTimeout(() => {
+    document.getElementById('text').style.opacity = '1';
+  }, 1500);
+
+}, 9000);
+</script>
 
 </body>
 </html>
