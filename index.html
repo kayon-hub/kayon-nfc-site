@@ -48,6 +48,7 @@ body {
   opacity: 0;
   animation: fadeIn 3s ease forwards;
   animation-delay: 3s;
+  transition: opacity 1.5s ease;
 }
 
 /* 文字區 */
@@ -99,9 +100,10 @@ body {
   right: 60px;
   width: 150px;
   opacity: 0;
+  transition: opacity 2s ease;
 }
 
-/* 📱 手機優先 */
+/* 📱 手機 */
 @media (max-width: 600px) {
 
   .earth {
@@ -156,20 +158,32 @@ body {
 <img src="signature.png" class="sign" id="sign">
 
 <script>
-// 9秒後：標題消失 → 文字開始
+// 🎯 修正：title 先淡出 → 再消失 → 再進文字
 setTimeout(() => {
-  document.getElementById('title').style.opacity = '0';
 
-  const text = document.getElementById('text');
-  text.style.opacity = '1';
-  text.classList.add('show');
+  const title = document.getElementById('title');
+
+  // 淡出
+  title.style.opacity = '0';
+
+  // 等動畫結束再移除
+  setTimeout(() => {
+    title.style.display = 'none';
+
+    const text = document.getElementById('text');
+    text.style.opacity = '1';
+    text.classList.add('show');
+
+  }, 1500);
 
 }, 9000);
 
-// 18秒後：簽名出現
+
+// 🎯 簽名最後出
 setTimeout(() => {
   document.getElementById('sign').style.opacity = '1';
 }, 18000);
+
 </script>
 
 </body>
