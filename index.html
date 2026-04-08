@@ -1,10 +1,114 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-TW">
 <head>
   <meta charset="UTF-8">
   <title>KAYON</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      background: #000;
+      color: #EDEDED;
+      font-family: 'Caveat', cursive;
+      overflow: hidden;
+    }
+
+    .center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+
+    .title {
+      font-size: 32px;
+      opacity: 0;
+      animation: fadeIn 2s ease forwards;
+    }
+
+    .album {
+      width: 260px;
+      opacity: 0;
+      margin-top: 20px;
+      animation: fadeIn 2s ease forwards;
+      animation-delay: 2s;
+    }
+
+    .text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      max-width: 600px;
+      text-align: center;
+      display: none;
+    }
+
+    .line {
+      opacity: 0;
+      transform: translateY(10px);
+      animation: fadeUp 0.8s ease forwards;
+      margin: 10px 0;
+      font-size: 28px;
+      line-height: 1.6;
+    }
+
+    .line:nth-child(1) { animation-delay: 5s; }
+    .line:nth-child(2) { animation-delay: 6s; }
+    .line:nth-child(3) { animation-delay: 7s; }
+    .line:nth-child(4) { animation-delay: 8s; }
+    .line:nth-child(5) { animation-delay: 9s; }
+    .line:nth-child(6) { animation-delay: 10s; }
+    .line:nth-child(7) { animation-delay: 11s; }
+    .line:nth-child(8) { animation-delay: 12s; }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .line { font-size: 22px; }
+      .album { width: 200px; }
+    }
+  </style>
 </head>
-<body style="background:black; color:white; text-align:center; margin-top:40vh;">
-  不完美的快樂
+
+<body>
+
+  <!-- 第一屏 -->
+  <div class="center">
+    <div class="title">不完美的快樂</div>
+    <img src="images/album.png" class="album">
+  </div>
+
+  <!-- 手寫文字 -->
+  <div class="text" id="text">
+    <div class="line">Hi, 我是 KAYON</div>
+    <div class="line">如果你看到這裡</div>
+    <div class="line">這張限量 NFC 專輯應該在你手上</div>
+    <div class="line">謝謝你把它留下</div>
+    <div class="line">當這個世界對你不太溫柔的時候</div>
+    <div class="line">希望這張專輯</div>
+    <div class="line">可以剛好陪著你</div>
+    <div class="line">KAYON</div>
+  </div>
+
+  <script>
+    setTimeout(() => {
+      document.querySelector('.center').style.display = 'none';
+      document.getElementById('text').style.display = 'block';
+    }, 4000);
+  </script>
+
 </body>
 </html>
