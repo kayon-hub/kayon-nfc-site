@@ -2,6 +2,7 @@
 <html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>KAYON</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&display=swap" rel="stylesheet">
@@ -15,23 +16,23 @@ body {
   font-family: 'Caveat', cursive;
 }
 
-/* 星空（極淡） */
+/* 星空 */
 .stars {
   position: fixed;
   width: 100%;
   height: 100%;
   background: radial-gradient(white 1px, transparent 1px);
   background-size: 3px 3px;
-  opacity: 0.15;
+  opacity: 0.12;
 }
 
 /* 地球 */
 .earth {
   position: absolute;
-  bottom: -300px;
+  bottom: -180px;
   left: 50%;
   transform: translateX(-50%);
-  width: 700px;
+  width: 520px;
   opacity: 0;
   animation: earthRise 6s ease forwards;
 }
@@ -42,11 +43,11 @@ body {
   top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 34px;
-  letter-spacing: 3px;
+  font-size: 32px;
+  letter-spacing: 2px;
   opacity: 0;
   animation: fadeIn 3s ease forwards;
-  animation-delay: 4s;
+  animation-delay: 3s;
 }
 
 /* 文字區 */
@@ -58,36 +59,28 @@ body {
   max-width: 600px;
   text-align: center;
   opacity: 0;
-  transition: opacity 2s ease;
 }
 
+/* 每一行 */
 .line {
   opacity: 0;
-  transform: translateY(10px);
-  animation: fadeUp 0.8s ease forwards;
   margin: 10px 0;
   font-size: 26px;
 }
 
-/* 每行延遲（節奏） */
-.line:nth-child(1){animation-delay:1s;}
-.line:nth-child(2){animation-delay:2s;}
-.line:nth-child(3){animation-delay:3s;}
-.line:nth-child(4){animation-delay:4s;}
-.line:nth-child(5){animation-delay:5s;}
-.line:nth-child(6){animation-delay:6s;}
-.line:nth-child(7){animation-delay:7s;}
-.line:nth-child(8){animation-delay:8s;}
+/* 一句一句出 */
+.show .line:nth-child(1){animation: fadeUp 0.8s forwards 0s;}
+.show .line:nth-child(2){animation: fadeUp 0.8s forwards 1s;}
+.show .line:nth-child(3){animation: fadeUp 0.8s forwards 2s;}
+.show .line:nth-child(4){animation: fadeUp 0.8s forwards 3s;}
+.show .line:nth-child(5){animation: fadeUp 0.8s forwards 4s;}
+.show .line:nth-child(6){animation: fadeUp 0.8s forwards 5s;}
+.show .line:nth-child(7){animation: fadeUp 0.8s forwards 6s;}
+.show .line:nth-child(8){animation: fadeUp 0.8s forwards 7s;}
 
 @keyframes earthRise {
-  0% {
-    bottom: -300px;
-    opacity: 0;
-  }
-  100% {
-    bottom: -120px;
-    opacity: 0.6;
-  }
+  0% { bottom: -250px; opacity: 0; }
+  100% { bottom: -180px; opacity: 0.5; }
 }
 
 @keyframes fadeIn {
@@ -95,28 +88,48 @@ body {
 }
 
 @keyframes fadeUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* 簽名 */
 .sign {
   position: absolute;
-  bottom: 60px;
+  bottom: 70px;
   right: 60px;
-  width: 160px;
-
+  width: 150px;
   opacity: 0;
-  animation: fadeIn 2s ease forwards;
-  animation-delay: 18s; /* 最後出場 */
 }
 
-@media (max-width:600px){
-  .earth{width:450px;}
-  .line{font-size:22px;}
-  .sign{width:120px;}
+/* 📱 手機優先 */
+@media (max-width: 600px) {
+
+  .earth {
+    width: 320px;
+    bottom: -120px;
+  }
+
+  .title {
+    font-size: 24px;
+    top: 42%;
+  }
+
+  .text {
+    width: 85%;
+    top: 48%;
+  }
+
+  .line {
+    font-size: 18px;
+    margin: 8px 0;
+  }
+
+  .sign {
+    width: 90px;
+    bottom: 40px;
+    right: 30px;
+  }
+
 }
 </style>
 </head>
@@ -140,17 +153,23 @@ body {
   <div class="line">KAYON</div>
 </div>
 
-<img src="signature.png" class="sign">
+<img src="signature.png" class="sign" id="sign">
 
 <script>
+// 9秒後：標題消失 → 文字開始
 setTimeout(() => {
   document.getElementById('title').style.opacity = '0';
 
-  setTimeout(() => {
-    document.getElementById('text').style.opacity = '1';
-  }, 1500);
+  const text = document.getElementById('text');
+  text.style.opacity = '1';
+  text.classList.add('show');
 
 }, 9000);
+
+// 18秒後：簽名出現
+setTimeout(() => {
+  document.getElementById('sign').style.opacity = '1';
+}, 18000);
 </script>
 
 </body>
