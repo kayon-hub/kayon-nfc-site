@@ -5,7 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>KAYON</title>
 
+<!-- 手寫字體（第一頁用） -->
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&display=swap" rel="stylesheet">
+
+<!-- 功能字體（串流頁用） -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
 body {
@@ -100,7 +104,7 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* 簽名（在文字內） */
+/* 簽名 */
 .sign {
   display: block;
   margin: 30px auto 0;
@@ -110,7 +114,7 @@ body {
   filter: brightness(1.2);
 }
 
-/* ===== 🎧 串流頁（新增） ===== */
+/* ===== 🎧 串流頁 ===== */
 
 .page2 {
   position: fixed;
@@ -129,6 +133,8 @@ body {
   pointer-events: none;
   transition: opacity 1.5s ease;
   z-index: 999;
+
+  font-family: 'Inter', sans-serif;
 }
 
 .page2.show {
@@ -138,28 +144,25 @@ body {
 
 .cover {
   width: 180px;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
 }
 
-.listen-text {
-  font-size: 20px;
-  margin-bottom: 30px;
-  letter-spacing: 2px;
-}
-
+/* LOGO按鈕 */
 .buttons {
   display: flex;
-  flex-direction: column;
-  gap: 12px;
+  gap: 24px;
+  justify-content: center;
 }
 
-.buttons a {
-  text-decoration: none;
-  color: white;
-  border: 1px solid rgba(255,255,255,0.3);
-  padding: 10px 24px;
-  border-radius: 20px;
-  font-size: 14px;
+.buttons img {
+  width: 42px;
+  opacity: 0.85;
+  transition: 0.3s;
+}
+
+.buttons img:hover {
+  opacity: 1;
+  transform: scale(1.1);
 }
 
 /* 📱 手機 */
@@ -191,6 +194,10 @@ body {
   .sign {
     width: 180px;
   }
+
+  .buttons img {
+    width: 36px;
+  }
 }
 </style>
 </head>
@@ -217,49 +224,54 @@ body {
   <img src="signature.png" class="sign" id="sign">
 </div>
 
-<!-- 🎧 第二頁 -->
+<!-- 🎧 串流頁 -->
 <div class="page2" id="page2">
+
   <img src="album.png" class="cover">
-  <div class="listen-text">Listen Now</div>
 
   <div class="buttons">
-    <a href="https://music.apple.com" target="_blank">Apple Music</a>
-    <a href="https://open.spotify.com" target="_blank">Spotify</a>
-    <a href="https://www.youtube.com" target="_blank">YouTube</a>
-    <a href="https://www.kkbox.com" target="_blank">KKBOX</a>
+    <a href="https://music.apple.com" target="_blank">
+      <img src="apple.png">
+    </a>
+
+    <a href="https://open.spotify.com" target="_blank">
+      <img src="spotify.png">
+    </a>
+
+    <a href="https://www.youtube.com" target="_blank">
+      <img src="youtube.png">
+    </a>
+
+    <a href="https://www.kkbox.com" target="_blank">
+      <img src="kkbox.png">
+    </a>
   </div>
+
 </div>
 
 <script>
 
-// 標題 → 專輯
+// 第一頁流程
 setTimeout(() => {
-  const title = document.getElementById('title');
-  title.style.opacity = '0';
-
+  document.getElementById('title').style.opacity = '0';
   setTimeout(()=>{
-    title.style.display = 'none';
+    document.getElementById('title').style.display = 'none';
     document.getElementById('album').style.opacity = '1';
   },2000);
-
 }, 9000);
 
-// 專輯 → 文字
 setTimeout(() => {
   document.getElementById('album').style.opacity = '0';
-
   const text = document.getElementById('text');
   text.style.opacity = '1';
   text.classList.add('show');
-
 }, 13000);
 
-// 簽名
 setTimeout(() => {
   document.getElementById('sign').style.opacity = '1';
 }, 20000);
 
-// 🎧 切到第二頁（新增）
+// 🎧 串流頁
 setTimeout(() => {
   document.getElementById('page2').classList.add('show');
 }, 24000);
