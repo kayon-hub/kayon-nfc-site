@@ -26,13 +26,13 @@ body {
   opacity: 0.12;
 }
 
-/* 🌍 地球（固定在最底） */
+/* 🌍 地球（縮小＋退場） */
 .earth {
   position: absolute;
-  bottom: -300px;
+  bottom: -220px;
   left: 50%;
   transform: translateX(-50%);
-  width: 520px;
+  width: 360px; /* 🔥 變小 */
   opacity: 0;
   animation: earthRise 6s ease forwards;
 }
@@ -61,10 +61,10 @@ body {
   transition: opacity 2s ease;
 }
 
-/* ✍️ 文字（往上讓空間） */
+/* ✍️ 文字（往上） */
 .text {
   position: absolute;
-  top: 42%;
+  top: 40%; /* 🔥 再往上 */
   left: 50%;
   transform: translate(-50%, -50%);
   width: 80%;
@@ -78,7 +78,7 @@ body {
   font-size: 22px;
 }
 
-/* 一句一句動畫 */
+/* 逐行動畫 */
 .show .line:nth-child(1){animation: fadeUp 0.8s forwards 0s;}
 .show .line:nth-child(2){animation: fadeUp 0.8s forwards 1s;}
 .show .line:nth-child(3){animation: fadeUp 0.8s forwards 2s;}
@@ -88,8 +88,8 @@ body {
 .show .line:nth-child(7){animation: fadeUp 0.8s forwards 6s;}
 
 @keyframes earthRise {
-  0% { bottom: -350px; opacity: 0; }
-  100% { bottom: -300px; opacity: 0.5; }
+  0% { bottom: -300px; opacity: 0; }
+  100% { bottom: -220px; opacity: 0.4; }
 }
 
 @keyframes fadeIn {
@@ -101,12 +101,12 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* ✍️ 簽名（安全區） */
+/* ✍️ 簽名（真正底部，不碰文字） */
 .sign {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  bottom: 180px;
+  bottom: 60px; /* 🔥 拉到底 */
 
   width: 220px;
   opacity: 0;
@@ -119,8 +119,8 @@ body {
 @media (max-width:600px){
 
   .earth {
-    width: 300px;
-    bottom: -240px;
+    width: 240px; /* 再縮 */
+    bottom: -180px;
   }
 
   .title {
@@ -133,7 +133,7 @@ body {
   }
 
   .text {
-    width: 85%;
+    top: 38%;
   }
 
   .line {
@@ -141,8 +141,8 @@ body {
   }
 
   .sign {
-    width: 200px;
-    bottom: 160px;
+    width: 180px;
+    bottom: 50px; /* 手機底部 */
   }
 }
 </style>
@@ -172,7 +172,7 @@ body {
 
 <script>
 
-// 9秒：標題消失＋專輯出現
+// 標題 → 專輯
 setTimeout(() => {
   const title = document.getElementById('title');
   title.style.opacity = '0';
@@ -184,7 +184,7 @@ setTimeout(() => {
 
 }, 9000);
 
-// 13秒：專輯消失＋文字出
+// 專輯 → 文字
 setTimeout(() => {
   document.getElementById('album').style.opacity = '0';
 
@@ -194,7 +194,7 @@ setTimeout(() => {
 
 }, 13000);
 
-// 20秒：簽名出現（收尾）
+// 簽名出現
 setTimeout(() => {
   document.getElementById('sign').style.opacity = '1';
 }, 20000);
