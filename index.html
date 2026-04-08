@@ -44,32 +44,41 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 32px;
-  letter-spacing: 2px;
   opacity: 0;
   animation: fadeIn 3s ease forwards;
   animation-delay: 3s;
-  transition: opacity 1.5s ease;
+  transition: opacity 2s ease;
 }
 
-/* 文字區 */
-.text {
+/* 專輯 */
+.album {
   position: absolute;
-  top: 50%;
+  top: 52%;
   left: 50%;
   transform: translate(-50%, -50%);
-  max-width: 600px;
+  width: 200px;
+  opacity: 0;
+  transition: opacity 2s ease;
+}
+
+/* 文字 */
+.text {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
   text-align: center;
   opacity: 0;
 }
 
-/* 每一行 */
 .line {
   opacity: 0;
-  margin: 10px 0;
-  font-size: 26px;
+  margin: 8px 0;
+  font-size: 22px;
 }
 
-/* 一句一句出 */
+/* 一句一句 */
 .show .line:nth-child(1){animation: fadeUp 0.8s forwards 0s;}
 .show .line:nth-child(2){animation: fadeUp 0.8s forwards 1s;}
 .show .line:nth-child(3){animation: fadeUp 0.8s forwards 2s;}
@@ -93,45 +102,41 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* 簽名 */
+/* 簽名（放大＋更有存在感） */
 .sign {
   position: absolute;
-  bottom: 70px;
-  right: 60px;
-  width: 150px;
+  bottom: 60px;
+  right: 40px;
+  width: 140px;
   opacity: 0;
   transition: opacity 2s ease;
 }
 
 /* 📱 手機 */
-@media (max-width: 600px) {
+@media (max-width:600px){
 
   .earth {
-    width: 320px;
+    width: 300px;
     bottom: -120px;
   }
 
   .title {
-    font-size: 24px;
-    top: 42%;
+    font-size: 22px;
   }
 
-  .text {
-    width: 85%;
-    top: 48%;
+  .album {
+    width: 140px;
+    top: 55%;
   }
 
   .line {
     font-size: 18px;
-    margin: 8px 0;
   }
 
   .sign {
-    width: 90px;
+    width: 110px;
     bottom: 40px;
-    right: 30px;
   }
-
 }
 </style>
 </head>
@@ -143,6 +148,8 @@ body {
 <img src="https://pngimg.com/uploads/earth/earth_PNG39.png" class="earth">
 
 <div class="title" id="title">不完美的快樂</div>
+
+<img src="album.png" class="album" id="album">
 
 <div class="text" id="text">
   <div class="line">Hi, 我是 KAYON</div>
@@ -158,31 +165,39 @@ body {
 <img src="signature.png" class="sign" id="sign">
 
 <script>
-// 🎯 修正：title 先淡出 → 再消失 → 再進文字
+
+// 🎯 9秒後：title消失＋專輯出現
 setTimeout(() => {
 
   const title = document.getElementById('title');
-
-  // 淡出
   title.style.opacity = '0';
 
-  // 等動畫結束再移除
-  setTimeout(() => {
+  setTimeout(()=>{
     title.style.display = 'none';
 
-    const text = document.getElementById('text');
-    text.style.opacity = '1';
-    text.classList.add('show');
+    document.getElementById('album').style.opacity = '1';
 
-  }, 1500);
+  },2000);
 
 }, 9000);
 
 
-// 🎯 簽名最後出
+// 🎯 13秒：專輯淡掉＋文字進來
+setTimeout(() => {
+
+  document.getElementById('album').style.opacity = '0';
+
+  const text = document.getElementById('text');
+  text.style.opacity = '1';
+  text.classList.add('show');
+
+}, 13000);
+
+
+// 🎯 20秒：簽名出現
 setTimeout(() => {
   document.getElementById('sign').style.opacity = '1';
-}, 18000);
+}, 20000);
 
 </script>
 
