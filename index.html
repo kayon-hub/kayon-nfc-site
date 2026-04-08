@@ -26,10 +26,10 @@ body {
   opacity: 0.12;
 }
 
-/* 地球 */
+/* 🌍 地球（固定在最底） */
 .earth {
   position: absolute;
-  bottom: -180px;
+  bottom: -300px;
   left: 50%;
   transform: translateX(-50%);
   width: 520px;
@@ -61,10 +61,10 @@ body {
   transition: opacity 2s ease;
 }
 
-/* 文字 */
+/* ✍️ 文字（往上讓空間） */
 .text {
   position: absolute;
-  top: 45%;
+  top: 42%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 80%;
@@ -88,8 +88,8 @@ body {
 .show .line:nth-child(7){animation: fadeUp 0.8s forwards 6s;}
 
 @keyframes earthRise {
-  0% { bottom: -250px; opacity: 0; }
-  100% { bottom: -180px; opacity: 0.5; }
+  0% { bottom: -350px; opacity: 0; }
+  100% { bottom: -300px; opacity: 0.5; }
 }
 
 @keyframes fadeIn {
@@ -101,12 +101,12 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* ✍️ 簽名（收尾主角） */
+/* ✍️ 簽名（安全區） */
 .sign {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  bottom: 160px; /* ← 往上拉一點，避免壓字 */
+  bottom: 180px;
 
   width: 220px;
   opacity: 0;
@@ -115,12 +115,14 @@ body {
   filter: brightness(1.2);
 }
 
+/* 📱 手機 */
 @media (max-width:600px){
-  .sign {
-    width: 200px;
-    bottom: 140px; /* ← 手機也一起拉開 */
+
+  .earth {
+    width: 300px;
+    bottom: -240px;
   }
-}
+
   .title {
     font-size: 22px;
   }
@@ -130,13 +132,17 @@ body {
     top: 55%;
   }
 
+  .text {
+    width: 85%;
+  }
+
   .line {
     font-size: 18px;
   }
 
   .sign {
-    width: 320px;
-    bottom: 60px;
+    width: 200px;
+    bottom: 160px;
   }
 }
 </style>
