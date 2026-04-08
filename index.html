@@ -9,71 +9,47 @@
 <style>
 body {
   margin: 0;
-  overflow: hidden;
   background: black;
+  overflow: hidden;
   color: #EDEDED;
   font-family: 'Caveat', cursive;
 }
 
-/* 星星 */
+/* 星空（極淡） */
 .stars {
   position: fixed;
   width: 100%;
   height: 100%;
-  background: transparent;
-  box-shadow:
-    20px 30px #fff,
-    100px 200px #fff,
-    300px 400px #aaa,
-    500px 100px #ddd,
-    700px 300px #fff,
-    900px 500px #aaa,
-    1200px 200px #ddd,
-    1500px 400px #fff,
-    1700px 100px #bbb,
-    2000px 300px #fff;
-  animation: twinkle 3s infinite alternate;
-}
-
-@keyframes twinkle {
-  from { opacity: 0.3; }
-  to { opacity: 1; }
+  background: radial-gradient(white 1px, transparent 1px);
+  background-size: 3px 3px;
+  opacity: 0.15;
 }
 
 /* 地球 */
 .earth {
   position: absolute;
-  bottom: -120px;
+  bottom: -300px;
   left: 50%;
   transform: translateX(-50%);
-  width: 500px;
-  opacity: 0.5;
+  width: 700px;
+  opacity: 0;
+  animation: earthRise 6s ease forwards;
 }
 
 /* 標題 */
 .title {
   position: absolute;
-  top: 50%;
+  top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 36px;
+  font-size: 34px;
+  letter-spacing: 3px;
   opacity: 0;
   animation: fadeIn 3s ease forwards;
-}
-
-/* 封面 */
-.album {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 260px;
-  opacity: 0;
-  animation: fadeIn 2s ease forwards;
   animation-delay: 4s;
 }
 
-/* 手寫 */
+/* 文字區 */
 .text {
   position: absolute;
   top: 50%;
@@ -82,7 +58,7 @@ body {
   max-width: 600px;
   text-align: center;
   opacity: 0;
-  transition: opacity 1.5s ease;
+  transition: opacity 2s ease;
 }
 
 .line {
@@ -90,9 +66,10 @@ body {
   transform: translateY(10px);
   animation: fadeUp 0.8s ease forwards;
   margin: 10px 0;
-  font-size: 28px;
+  font-size: 26px;
 }
 
+/* 每行延遲（節奏） */
 .line:nth-child(1){animation-delay:1s;}
 .line:nth-child(2){animation-delay:2s;}
 .line:nth-child(3){animation-delay:3s;}
@@ -102,18 +79,44 @@ body {
 .line:nth-child(7){animation-delay:7s;}
 .line:nth-child(8){animation-delay:8s;}
 
+@keyframes earthRise {
+  0% {
+    bottom: -300px;
+    opacity: 0;
+  }
+  100% {
+    bottom: -120px;
+    opacity: 0.6;
+  }
+}
+
 @keyframes fadeIn {
   to { opacity: 1; }
 }
 
 @keyframes fadeUp {
-  to { opacity: 1; transform: translateY(0); }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 簽名 */
+.sign {
+  position: absolute;
+  bottom: 60px;
+  right: 60px;
+  width: 160px;
+
+  opacity: 0;
+  animation: fadeIn 2s ease forwards;
+  animation-delay: 18s; /* 最後出場 */
 }
 
 @media (max-width:600px){
-  .album{width:200px;}
-  .earth{width:350px;}
+  .earth{width:450px;}
   .line{font-size:22px;}
+  .sign{width:120px;}
 }
 </style>
 </head>
@@ -122,11 +125,9 @@ body {
 
 <div class="stars"></div>
 
-<img class="earth" src="https://pngimg.com/uploads/earth/earth_PNG39.png">
+<img src="https://pngimg.com/uploads/earth/earth_PNG39.png" class="earth">
 
 <div class="title" id="title">不完美的快樂</div>
-
-<img src="album.png" class="album" id="album">
 
 <div class="text" id="text">
   <div class="line">Hi, 我是 KAYON</div>
@@ -139,10 +140,11 @@ body {
   <div class="line">KAYON</div>
 </div>
 
+<img src="signature.png" class="sign">
+
 <script>
 setTimeout(() => {
   document.getElementById('title').style.opacity = '0';
-  document.getElementById('album').style.opacity = '0';
 
   setTimeout(() => {
     document.getElementById('text').style.opacity = '1';
