@@ -26,7 +26,7 @@ body {
   opacity: 0.12;
 }
 
-/* 🌍 地球（穩定版） */
+/* 地球 */
 .earth {
   position: absolute;
   bottom: -180px;
@@ -61,7 +61,7 @@ body {
   transition: opacity 2s ease;
 }
 
-/* ✍️ 文字 */
+/* 文字 */
 .text {
   position: absolute;
   top: 42%;
@@ -78,7 +78,6 @@ body {
   font-size: 22px;
 }
 
-/* 一句一句動畫 */
 .show .line:nth-child(1){animation: fadeUp 0.8s forwards 0s;}
 .show .line:nth-child(2){animation: fadeUp 0.8s forwards 1s;}
 .show .line:nth-child(3){animation: fadeUp 0.8s forwards 2s;}
@@ -101,7 +100,7 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* ✍️ 簽名（關鍵修正：放進內容流） */
+/* 簽名（在文字內） */
 .sign {
   display: block;
   margin: 30px auto 0;
@@ -109,6 +108,58 @@ body {
   opacity: 0;
   transition: opacity 2s ease;
   filter: brightness(1.2);
+}
+
+/* ===== 🎧 串流頁（新增） ===== */
+
+.page2 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1.5s ease;
+  z-index: 999;
+}
+
+.page2.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.cover {
+  width: 180px;
+  margin-bottom: 30px;
+}
+
+.listen-text {
+  font-size: 20px;
+  margin-bottom: 30px;
+  letter-spacing: 2px;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.buttons a {
+  text-decoration: none;
+  color: white;
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: 10px 24px;
+  border-radius: 20px;
+  font-size: 14px;
 }
 
 /* 📱 手機 */
@@ -139,7 +190,6 @@ body {
 
   .sign {
     width: 180px;
-    margin-top: 24px;
   }
 }
 </style>
@@ -164,8 +214,20 @@ body {
   <div class="line">希望這張專輯</div>
   <div class="line">可以剛好陪著你</div>
 
-  <!-- ✅ 簽名在這裡 -->
   <img src="signature.png" class="sign" id="sign">
+</div>
+
+<!-- 🎧 第二頁 -->
+<div class="page2" id="page2">
+  <img src="album.png" class="cover">
+  <div class="listen-text">Listen Now</div>
+
+  <div class="buttons">
+    <a href="https://music.apple.com" target="_blank">Apple Music</a>
+    <a href="https://open.spotify.com" target="_blank">Spotify</a>
+    <a href="https://www.youtube.com" target="_blank">YouTube</a>
+    <a href="https://www.kkbox.com" target="_blank">KKBOX</a>
+  </div>
 </div>
 
 <script>
@@ -192,10 +254,15 @@ setTimeout(() => {
 
 }, 13000);
 
-// 簽名出現
+// 簽名
 setTimeout(() => {
   document.getElementById('sign').style.opacity = '1';
 }, 20000);
+
+// 🎧 切到第二頁（新增）
+setTimeout(() => {
+  document.getElementById('page2').classList.add('show');
+}, 24000);
 
 </script>
 
