@@ -104,23 +104,23 @@ body {
 /* ✍️ 簽名（收尾主角） */
 .sign {
   position: absolute;
-  bottom: 80px;
-  right: 40px;
-  width: 220px; /* 放大約 +35% */
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 160px; /* ← 往上拉一點，避免壓字 */
+
+  width: 220px;
   opacity: 0;
   transition: opacity 2s ease;
 
-  filter: brightness(1.2); /* 微提亮 */
+  filter: brightness(1.2);
 }
 
-/* 📱 手機 */
 @media (max-width:600px){
-
-  .earth {
-    width: 300px;
-    bottom: -120px;
+  .sign {
+    width: 200px;
+    bottom: 140px; /* ← 手機也一起拉開 */
   }
-
+}
   .title {
     font-size: 22px;
   }
