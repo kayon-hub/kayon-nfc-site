@@ -141,7 +141,16 @@ body {
 
 .cover {
   width: 160px;
-  margin-bottom: 40px;
+  margin-bottom: 24px;
+}
+
+/* 引導文字 */
+.page2-intro {
+  font-size: 14px;
+  color: #CFCFCF;
+  letter-spacing: 1px;
+  margin: 0 0 28px;
+  text-align: center;
 }
 
 /* ICON區 */
@@ -164,6 +173,45 @@ body {
 .buttons img:hover {
   transform: scale(1.12);
   opacity: 1;
+}
+
+/* 結尾文字 */
+.page2-outro {
+  margin-top: 40px;
+  text-align: center;
+  color: #BDBDBD;
+  font-size: 13px;
+  line-height: 1.8;
+  letter-spacing: 0.5px;
+  padding: 0 20px;
+}
+
+.page2-outro .wish {
+  color: #EDEDED;
+  font-size: 14px;
+  margin-bottom: 18px;
+}
+
+.page2-outro .follow {
+  margin-bottom: 6px;
+  opacity: 0.85;
+}
+
+.page2-outro .socials a {
+  color: #EDEDED;
+  text-decoration: none;
+  opacity: 0.9;
+  transition: opacity 0.2s ease;
+}
+
+.page2-outro .socials a:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+.page2-outro .socials .sep {
+  margin: 0 10px;
+  opacity: 0.5;
 }
 
 /* 手機 */
@@ -200,6 +248,19 @@ body {
     width: 34px;
     height: 34px;
   }
+
+  .page2-intro {
+    font-size: 13px;
+  }
+
+  .page2-outro {
+    font-size: 12px;
+    margin-top: 32px;
+  }
+
+  .page2-outro .wish {
+    font-size: 13px;
+  }
 }
 </style>
 </head>
@@ -231,6 +292,8 @@ body {
 
   <img src="album.png" class="cover">
 
+  <p class="page2-intro">接下來選擇你常用的平台即可收聽</p>
+
   <div class="buttons">
 
     <a href="https://is.gd/ec6R3Q" target="_blank">
@@ -253,6 +316,16 @@ body {
       <img src="line.png">
     </a>
 
+  </div>
+
+  <div class="page2-outro">
+    <p class="wish">希望接下來會有《完美的快樂》陪著你</p>
+    <p class="follow">更多 KAYON 的消息請關注官方</p>
+    <p class="socials">
+      <a href="https://www.instagram.com/kayonstudio_official/" target="_blank">Instagram</a>
+      <span class="sep">|</span>
+      <a href="https://www.youtube.com/@KARBONXGAIA_ENT" target="_blank">YouTube</a>
+    </p>
   </div>
 
 </div>
